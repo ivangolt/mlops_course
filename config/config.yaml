@@ -1,0 +1,6 @@
+defaults:
+  - _self_
+  - model: GBT
+  - preprocessing: knnimputer
+
+cpu_count: ${oc.env:NUMBER_OF_PROCESSORS}

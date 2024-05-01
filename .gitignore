@@ -1,0 +1,8 @@
+.venv/
+*cache/
+*/__pycache__/
+data/*.csv
+.backup
+_site/
+/.quarto/
+/.snakemake/

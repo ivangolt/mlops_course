@@ -1,0 +1,55 @@
+---
+
+title: Pipeline (Snakemake + Hydra) 
+---
+
+author: Ivan Milovidov
+
+## Data 
+this pipelane uses the [titanic dataset](https://www.kaggle.com/competitions/titanic)
+It contains information about the passengers on the Titanic
+
+The goal is to train a model to predict whether a Titanic passenger survived .
+## Prepare data
+The data is prepared in two versions, using different scaling(StandartScale and RobustScale)
+
+## Models
+The models trained within the Pipeline are:
+
+GradientBoosting
+Random Forest.
+Model parameters are taken from configs using Hydra
+
+## Pipeline
+
+As part of the task, the pipelines were run using a conda virtual environment containing Scikit-learn,  etc. packages to train the ML model inside the Snakemake pipelines. The launch command:
+
+'snakemake  --cores 4'
+
+
+## DAG
+
+To build dag launch command:
+
+`snakemake --dag | dot -Tsvg > pipeline.svg`.
+
+![](docs/pipeline.svg)
+
+## Stage of pipelines
+
+1. load_data - loading data from kaggle folder
+2. prepare_data - preprocessing dataset with two types of scaling(RobustScaler, StandartScaler)
+3. train_model - fitting models of GradientBoosting and RandomForest with two variants input data
+
+## Artifacts
+
+Pipeline trained 2 models with 2 different variants of data preprocessing.
+
+## Code of pipelines
+
+[Code](docs/snakemake_hydra.html)
+
+## Hydra 
+In pipeline use a Hydra - framework for configuring.
+In this project use hydra Compose-API('workflows/scripts/prepare_data') and instantiate('workflows/scripts/train_model') to initialise the model inside auxiliary python modules 
+

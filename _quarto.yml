@@ -1,0 +1,27 @@
+project:
+  type: website
+
+website:
+  title: "MLOps"
+  navbar:
+    left:
+      - href: CONTRIBUTING.html
+        text: Instruments
+      - href: mlops_course/tree_data.html
+        text: EDA of dataset
+      - href: docs/Snakemake_Hydra_pipelines.html
+        text: Snakemake_Hydra
+      - href: docs/snakemake_hydra.html
+        text: snakemake_hydra_code
+      - href: about.html
+        text: about site
+      
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

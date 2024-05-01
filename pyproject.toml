@@ -1,0 +1,149 @@
+[tool.poetry]
+name = "mlops_course"
+version = "0.1.9"
+description = ""
+authors = ["ivan golt <102701882+ivangolt@users.noreply.github.com>"]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.4"
+flake8 = "^7.0.0"
+mypy = "^1.9.0"
+black = "^24.3.0"
+pre-commit = "^3.7.0"
+
+[tool.poetry.group.prod.dependencies]
+numpy = "^1.26.4"
+pandas = "^2.2.1"
+jupyter = "^1.0.0"
+seaborn = "^0.13.2"
+plotly = "^5.20.0"
+folium = "^0.16.0"
+quarto = "^0.1.0"
+scikit-learn = "^1.4.2"
+hydra-core = "^1.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# Settings for Ruff
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+builtins = [
+    "snakemake",  # may appear undefined as passed to scripts via `Snakefile`
+]
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
+
+
+# Settings for mypy
+[tool.mypy]
+# Specify Python version
+python_version = "3.11"
+
+# MyPy configuration options
+# Specify strictness level
+strict = true
+
+# Enable incremental mode for faster subsequent runs
+incremental = true
+
+# Treat missing imports as errors
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+disallow_incomplete_defs = true
+
+# Exclude certain files or directories from type checking
+exclude = [
+    "node_modules",
+    "build",
+    ".venv",
+    ".ruff_cache",
+    "mypy_cache"
+
+]
+
+# Ignore certain errors or modules
+ignore_errors = true
+
+
+# Settings for flake8
+[tool.flake8]
+# Maximum line length
+max-line-length = 100
+
+# Exclude files or directories from linting
+exclude = [
+    "node_modules",
+    "build",
+    ".venv",
+    ".ruff_cache",
+    ".mypy_cache"
+]
+
+# List of error codes to ignore
+ignore = [
+    "E203",  # Whitespace before ':'
+    "W503",  # Line break before binary operator
+]
+
+# Enable strict typing
+enable-extensions = ["TYP001"]
+
+# Specify additional plugins
+# plugins = ["flake8-bandit", "flake8-docstrings"]
+
+# Show source code for each error
+show-source = true
+
+# Show error messages
+statistics = true
+
+# Output style
+format = "default"
+
+
+# Settings for black
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''

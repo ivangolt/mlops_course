@@ -1,0 +1,13 @@
+---
+title: "About"
+---
+
+The site contains documentation from the course repository "[MLOps and production in DS research 3.0]
+
+
+---
+@ivan_golt
+
+If you have any questions or suggestions regarding the development methodology in this repository, please contact us at:
+- Email: milovidov.999@gmail.com
+- telegram: @ivan_golt
