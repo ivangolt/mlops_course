@@ -27,8 +27,8 @@ build:
     - docker info
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - docker build -t $CI_REGISTRY/starters9532013/mlops_course:latest .
-    - docker push $CI_REGISTRY/starters9532013/mlops_course:latest
+    - docker build -t $CI_REGISTRY/ivan_golt/mlops_course:latest .
+    - docker push $CI_REGISTRY/ivan_golt/mlops_course:latest
 
 
 
