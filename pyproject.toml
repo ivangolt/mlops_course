@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mlops_course"
-version = "0.1.9"
+version = "1.0.1"
 description = ""
 authors = ["ivan golt <102701882+ivangolt@users.noreply.github.com>"]
 readme = "README.md"
