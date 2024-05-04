@@ -65,13 +65,38 @@ To get started with the project, follow these steps:
 
 1. **linting** 
 
-2. Build and publish your project as a package to the **gitlab pypi registry** (https://gitlab.com/ivan_ds/mlops_course/-/packages).
+2. Build and publish your project as a package to the **gitlab pypi registry** (https://gitlab.com/ivan_golt/mlops_course/-/packages).
 
-3. **DinD** build of a Docker image. Image published [Gitlab Docker Registry](https://gitlab.com/ivan_ds/mlops_course/container_registry).
+3. **DinD** build of a Docker image. Image published [Gitlab Docker Registry](https://gitlab.com/ivan_golt/mlops_course/container_registry).
 
 4. **EDA**  [mlops_course](mlops_course/tree_data.ipynb)
 
 5. **pages** add documentation of project in Gitlab Pages
+
+
+## Snakemake 
+
+Realized next workflow [Snakefile](Snakefile)
+
+1. **preprocessing**: realized two types  preprocessing of input dataset 
+2. **fittng models**: on this stage fitting two models of GBDT (gbdt_params)(config/model/GBT.yaml) and RandomForest [rndf_params](config\model\RNDF.yaml)
+
+As part of the task, the pipelines were run using a conda virtual environment containing Scikit-learn, etc. packages to train the ML model inside the Snakemake pipelines. The launch command:
+
+'''
+snakemake –cores 4
+'''
+Created artefacts after runnig pipeline [artifacts](workflows\models).
+
+## Hydra 
+
+Hydra framework application is implemented. Configuration file config.yaml includes parameters of scaler and imputers of data and parameters for ML-model.
+
+1. Create two groups of configs(for [preprocessing](config\preprocessing) and for [model](config\model))
+2. Integrated reading of configurations via Compose API into EDA code
+3. Used instantiate to initialise the model
+
+See the [report](docs\Snakemake_Hydra_pipelines.qmd) for details of the implementation in the code
 
 ## Contacts
 

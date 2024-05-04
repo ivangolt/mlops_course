@@ -1,6 +1,6 @@
 ---
 
-title: Pipeline (Snakemake + Hydra) 
+# Pipeline (Snakemake + Hydra) 
 ---
 
 author: Ivan Milovidov
@@ -16,9 +16,28 @@ The data is prepared in two versions, using different scaling(StandartScale and 
 ## Models
 The models trained within the Pipeline are:
 
-GradientBoosting
-Random Forest.
+GradientBoosting:
+
+```
+_target_: sklearn.ensemble.GradientBoostingClassifier
+random_state: 42
+n_estimators: 500
+learning_rate: 0.01
+max_depth: 2
+```
+
+
+Random Forest:
+
+```
+_target_: sklearn.ensemble.RandomForestClassifier
+n_estimators: 200
+max_depth: 200
+criterion: "entropy"
+min_samples_split: 2
+random_state: 42
 Model parameters are taken from configs using Hydra
+```
 
 ## Pipeline
 
@@ -51,5 +70,48 @@ Pipeline trained 2 models with 2 different variants of data preprocessing.
 
 ## Hydra 
 In pipeline use a Hydra - framework for configuring.
-In this project use hydra Compose-API('workflows/scripts/prepare_data') and instantiate('workflows/scripts/train_model') to initialise the model inside auxiliary python modules 
+In this project use hydra Compose-API('workflows/scripts/prepare_data') 
 
+On this stage realized function to read params from config:
+
+```
+def return_config(config_path: str, config: str):
+    with initialize(config_path=config_path):
+        config = compose(config)
+    return config
+```
+and setting params from config:
+
+```
+simple_imputer_config = return_config(
+        "../../config/preprocessing", config="simpleimputer.yaml"
+    )
+SimpleImputer(**simple_imputer_config)
+```
+
+Also use an instantiate('workflows/scripts/train_model') to initialise the model inside auxiliary python modules 
+
+For this realized function with writing overrides:
+
+```
+def compose_config(overrides: list[str] | None = None) -> DictConfig:
+    """get a config for overriding params
+
+    Args:
+        overrides (list[str] | None, optional): params with override values
+
+    Returns:
+        DictConfig: config
+    """
+
+    with initialize(config_path="../../config"):
+        hydra_config = compose(config_name="config", overrides=overrides)
+    return hydra_config
+```
+and example to use it in implementing model in code:
+
+```
+if model_type == "GBT" or model_type == "RNDF":
+        cfg = compose_config(overrides=[f"model='{model_type}'"])
+        model = instantiate(cfg["model"])
+```
