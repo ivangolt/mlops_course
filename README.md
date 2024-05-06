@@ -94,7 +94,7 @@ Hydra framework application is implemented. Configuration file config.yaml inclu
 
 1. Create two groups of configs(for [preprocessing](config\preprocessing) and for [model](config\model))
 2. Integrated reading of configurations via Compose API into EDA code
-3. Used instantiate to initialise the model
+3. Used instantiate to initialise the model.
 
 See the [report](docs\Snakemake_Hydra_pipelines.qmd) for details of the implementation in the code
 
