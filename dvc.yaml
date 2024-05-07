@@ -1,0 +1,10 @@
+stages:
+  
+  preprocessing:
+    cmd: python dvc_scripts cli-preprocessing data\dvc_data\raw_data\data.csv data\dvc_data\processed\data_preprocessed.csv
+    deps:
+    - data\dvc_data\raw_data\data.csv
+    - dvc_scripts\preprocessing.py
+    outs:
+    - data\dvc_data\processed\data_preprocessed.csv
+  

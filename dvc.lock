@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  preprocessing:
+    cmd: python dvc_scripts cli-preprocessing data\dvc_data\raw_data\data.csv data\dvc_data\processed\data_preprocessed.csv
+    deps:
+    - path: data\dvc_data\raw_data\data.csv
+      hash: md5
+      md5: 416dbaae1e40fedb40d630edd694833b
+      size: 64950309
+    - path: dvc_scripts\preprocessing.py
+      hash: md5
+      md5: 3d74226b14cddaa228f590d6cc71bfe0
+      size: 2256
+    outs:
+    - path: data\dvc_data\processed\data_preprocessed.csv
+      hash: md5
+      md5: 70b2e0bfc880984465c1c91ed656b9ad
+      size: 38952625
