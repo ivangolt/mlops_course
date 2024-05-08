@@ -25,7 +25,3 @@ repos:
     rev: 7.0.0
     hooks:
     -   id: flake8
--   repo: https://github.com/python/black
-    rev: 24.2.0
-    hooks:
-      - id: black

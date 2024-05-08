@@ -14,6 +14,14 @@ logger = logging.getLogger(__name__)
 
 
 def split_data(data: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Splits the data into training and test df
+
+    Args:
+        data (pd.DataFrame): input data
+
+    Returns:
+        tuple[pd.DataFrame, pd.DataFrame]: out train and test dataset
+    """
     params = dvc.api.params_show()
     logger.info("Splitting data into train and validation sets...")
     train, test = train_test_split(
@@ -21,6 +29,7 @@ def split_data(data: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
         test_size=params["test_train_split"],
         shuffle=True,
         random_state=params["random_state"],
+        stratify=data["toxic"],
     )
     logger.info("Data split completed.")
     return train, test
@@ -35,6 +44,13 @@ def cli_split(
     train_features_path: Path,
     val_features_path: Path,
 ):
+    """Run splitting data
+
+    Args:
+        input_frame_path (Path): in path dataframe for split
+        train_features_path (Path): out train dataframe path
+        val_features_path (Path): out test dataframe path
+    """
     logger.info("Reading input data from: %s", input_frame_path)
     data = pd.read_csv(input_frame_path)
 

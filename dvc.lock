@@ -87,3 +87,32 @@ stages:
       hash: md5
       md5: 20ea6cbe9c3e25323ac7609cc38acbe0
       size: 160723
+  test_model:
+    cmd: python dvc_scripts cli-testing data\dvc_data\processed\test.csv dvc_artifacts\ml_models\logistic_regression.pikle
+      dvc_artifacts\models\vectorizer.pickle dvc_artifacts\summary.json dvc_artifacts\conflusion_matrix.png
+    deps:
+    - path: data\dvc_data\processed\test.csv
+      hash: md5
+      md5: e56bd3bbd14cdc62f34714fd7f89c9e5
+      size: 12213131
+    - path: dvc_artifacts\ml_models\logistic_regression.pikle
+      hash: md5
+      md5: 20ea6cbe9c3e25323ac7609cc38acbe0
+      size: 160723
+    - path: dvc_artifacts\models\vectorizer.pickle
+      hash: md5
+      md5: 8a7839f5fb2ab1168bc53194f47c7592
+      size: 2058792
+    - path: dvc_scripts\evaluate.py
+      hash: md5
+      md5: ebe93f8865965d0b247be2c5ddb74564
+      size: 2995
+    outs:
+    - path: dvc_artifacts\conflusion_matrix.png
+      hash: md5
+      md5: be4ce3dac92af466d3756f045d757c03
+      size: 13318
+    - path: dvc_artifacts\summary.json
+      hash: md5
+      md5: d1368a95da130fd411211746fcef5924
+      size: 535

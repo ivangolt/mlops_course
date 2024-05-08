@@ -1,5 +1,5 @@
 stages:
-  
+
   preprocessing:
     cmd: python dvc_scripts cli-preprocessing data\dvc_data\raw_data\data.csv data\dvc_data\processed\data_preprocessed.csv
     deps:
@@ -16,8 +16,8 @@ stages:
     - data\dvc_data\processed\data_preprocessed.csv
     - dvc_scripts\split.py
     outs:
-    - data\dvc_data\processed\train.csv 
-    - data\dvc_data\processed\test.csv  
+    - data\dvc_data\processed\train.csv
+    - data\dvc_data\processed\test.csv
 
   train_vectorizer:
     cmd: python dvc_scripts cli-tfidf data\dvc_data\processed\train.csv dvc_artifacts\models\vectorizer.pickle
@@ -31,10 +31,22 @@ stages:
   train_ml_model:
     cmd: python dvc_scripts cli-train data\dvc_data\processed\train.csv dvc_artifacts\models\vectorizer.pickle dvc_artifacts\ml_models\logistic_regression.pikle
     params:
-    - logistic_regression 
+    - logistic_regression
     deps:
-    - data\dvc_data\processed\train.csv 
+    - data\dvc_data\processed\train.csv
     - dvc_artifacts\models\vectorizer.pickle
     - dvc_scripts\train_model.py
     outs:
     - dvc_artifacts\ml_models\logistic_regression.pikle
+
+  test_model:
+    cmd: python dvc_scripts cli-testing data\dvc_data\processed\test.csv dvc_artifacts\ml_models\logistic_regression.pikle dvc_artifacts\models\vectorizer.pickle dvc_artifacts\summary.json dvc_artifacts\conflusion_matrix.png
+    deps:
+    - data\dvc_data\processed\test.csv
+    - dvc_artifacts\ml_models\logistic_regression.pikle
+    - dvc_artifacts\models\vectorizer.pickle
+    - dvc_scripts\evaluate.py
+    metrics:
+    - dvc_artifacts\summary.json
+    plots:
+    - dvc_artifacts\conflusion_matrix.png
