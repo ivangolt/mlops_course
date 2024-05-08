@@ -28,3 +28,13 @@ stages:
     - dvc_scripts\vectorize.py
     outs:
     - dvc_artifacts\models\vectorizer.pickle
+  train_ml_model:
+    cmd: python dvc_scripts cli-train data\dvc_data\processed\train.csv dvc_artifacts\models\vectorizer.pickle dvc_artifacts\ml_models\logistic_regression.pikle
+    params:
+    - logistic_regression 
+    deps:
+    - data\dvc_data\processed\train.csv 
+    - dvc_artifacts\models\vectorizer.pickle
+    - dvc_scripts\train_model.py
+    outs:
+    - dvc_artifacts\ml_models\logistic_regression.pikle

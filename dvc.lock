@@ -50,8 +50,8 @@ stages:
       size: 27743463
     - path: dvc_scripts\vectorize.py
       hash: md5
-      md5: 7506e90ca9c73197ad604d7a70672798
-      size: 1344
+      md5: 98085d2583bfa9aec5a5cb5c42a1d4ae
+      size: 1358
     params:
       params.yaml:
         vectorizer_tfidf:
@@ -60,5 +60,30 @@ stages:
     outs:
     - path: dvc_artifacts\models\vectorizer.pickle
       hash: md5
-      md5: 0bc0d51827fb1e470e7032027696c6fc
+      md5: 8a7839f5fb2ab1168bc53194f47c7592
       size: 2058792
+  train_ml_model:
+    cmd: python dvc_scripts cli-train data\dvc_data\processed\train.csv dvc_artifacts\models\vectorizer.pickle
+      dvc_artifacts\ml_models\logistic_regression.pikle
+    deps:
+    - path: data\dvc_data\processed\train.csv
+      hash: md5
+      md5: 57c4ef66d2121fa44daedcbcdf92ecde
+      size: 27743463
+    - path: dvc_artifacts\models\vectorizer.pickle
+      hash: md5
+      md5: 8a7839f5fb2ab1168bc53194f47c7592
+      size: 2058792
+    - path: dvc_scripts\train_model.py
+      hash: md5
+      md5: 0afddaf98052871d5990a96ad56b3e3a
+      size: 1273
+    params:
+      params.yaml:
+        logistic_regression:
+          random_state: 42
+    outs:
+    - path: dvc_artifacts\ml_models\logistic_regression.pikle
+      hash: md5
+      md5: 20ea6cbe9c3e25323ac7609cc38acbe0
+      size: 160723

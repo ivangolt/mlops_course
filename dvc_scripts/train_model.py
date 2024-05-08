@@ -1,0 +1,46 @@
+import logging
+import pickle
+from pathlib import Path
+
+import click
+import dvc.api
+import joblib
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+
+from .cli import cli
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+def train_model(data: pd.DataFrame, vectorizer) -> LogisticRegression:
+    params = dvc.api.params_show()
+    data = data.dropna()
+    features = data["text"]
+    target = data["toxic"]
+
+    features = vectorizer.transform(data["text"])
+
+    model_lr = LogisticRegression(**params["logistic_regression"]).fit(features, target)
+    return model_lr
+
+
+@cli.command()
+@click.argument("input_train_csv_path", type=Path)
+@click.argument("input_vectorizer_path", type=Path)
+@click.argument("output_model_path", type=Path)
+def cli_train(
+    input_train_csv_path: Path,
+    input_vectorizer_path: Path,
+    output_model_path: Path,
+):
+    data = pd.read_csv(input_train_csv_path)
+    tf_idf_vectorizer = joblib.load(input_vectorizer_path)
+
+    logger.info("features and target are download")
+
+    model = train_model(data=data, vectorizer=tf_idf_vectorizer)
+    logger.info("model trained")
+    pickle.dump(model, output_model_path.open("wb"))

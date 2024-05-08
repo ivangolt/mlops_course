@@ -9,7 +9,7 @@ import dvc.api
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-from .cli import cli
+from .cli import cli  # noqa: F811
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

@@ -3,9 +3,6 @@ vectorizer_tfidf:
   analyzer: "word"
 
 logistic_regression:
-  penalty: "l2"
-  C: 0.001
-  multi_class: "multinomial"
   random_state: 42
 
 random_state: 42
