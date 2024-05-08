@@ -7,4 +7,14 @@ stages:
     - dvc_scripts\preprocessing.py
     outs:
     - data\dvc_data\processed\data_preprocessed.csv
-  
+  split_data:
+    cmd: python dvc_scripts cli-split data\dvc_data\processed\data_preprocessed.csv data\dvc_data\processed\train.csv data\dvc_data\processed\test.csv
+    params:
+    - random_state
+    - test_train_split
+    deps:
+    - data\dvc_data\processed\data_preprocessed.csv
+    - dvc_scripts\split.py
+    outs:
+    - data\dvc_data\processed\train.csv 
+    - data\dvc_data\processed\test.csv  

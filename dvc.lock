@@ -9,10 +9,35 @@ stages:
       size: 64950309
     - path: dvc_scripts\preprocessing.py
       hash: md5
-      md5: 3d74226b14cddaa228f590d6cc71bfe0
-      size: 2256
+      md5: 6acd853644fe02cf92f06179cecb0640
+      size: 2965
     outs:
     - path: data\dvc_data\processed\data_preprocessed.csv
       hash: md5
       md5: 70b2e0bfc880984465c1c91ed656b9ad
       size: 38952625
+  split_data:
+    cmd: python dvc_scripts cli-split data\dvc_data\processed\data_preprocessed.csv
+      data\dvc_data\processed\train.csv data\dvc_data\processed\test.csv
+    deps:
+    - path: data\dvc_data\processed\data_preprocessed.csv
+      hash: md5
+      md5: 70b2e0bfc880984465c1c91ed656b9ad
+      size: 38952625
+    - path: dvc_scripts\split.py
+      hash: md5
+      md5: 0d8ec486e2a6f6d91d0e56ed3d86bf4e
+      size: 1397
+    params:
+      params.yaml:
+        random_state: 42
+        test_train_split: 0.3
+    outs:
+    - path: data\dvc_data\processed\test.csv
+      hash: md5
+      md5: e56bd3bbd14cdc62f34714fd7f89c9e5
+      size: 12213131
+    - path: data\dvc_data\processed\train.csv
+      hash: md5
+      md5: 57c4ef66d2121fa44daedcbcdf92ecde
+      size: 27743463
