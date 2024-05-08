@@ -18,3 +18,13 @@ stages:
     outs:
     - data\dvc_data\processed\train.csv 
     - data\dvc_data\processed\test.csv  
+
+  train_vectorizer:
+    cmd: python dvc_scripts cli-tfidf data\dvc_data\processed\train.csv dvc_artifacts\models\vectorizer.pickle
+    params:
+    - vectorizer_tfidf
+    deps:
+    - data\dvc_data\processed\train.csv
+    - dvc_scripts\vectorize.py
+    outs:
+    - dvc_artifacts\models\vectorizer.pickle

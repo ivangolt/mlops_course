@@ -41,3 +41,24 @@ stages:
       hash: md5
       md5: 57c4ef66d2121fa44daedcbcdf92ecde
       size: 27743463
+  train_vectorizer:
+    cmd: python dvc_scripts cli-tfidf data\dvc_data\processed\train.csv dvc_artifacts\models\vectorizer.pickle
+    deps:
+    - path: data\dvc_data\processed\train.csv
+      hash: md5
+      md5: 57c4ef66d2121fa44daedcbcdf92ecde
+      size: 27743463
+    - path: dvc_scripts\vectorize.py
+      hash: md5
+      md5: 7506e90ca9c73197ad604d7a70672798
+      size: 1344
+    params:
+      params.yaml:
+        vectorizer_tfidf:
+          max_features: 20000
+          analyzer: word
+    outs:
+    - path: dvc_artifacts\models\vectorizer.pickle
+      hash: md5
+      md5: 0bc0d51827fb1e470e7032027696c6fc
+      size: 2058792
