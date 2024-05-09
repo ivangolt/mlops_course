@@ -57,7 +57,8 @@ ruff-running:
 dvc-cache:
   stage: dvc
   script:
-    - micromamba run -n mlops_course poetry run dvc remote add -d gdrive $DVC_URL
+    - echo 'Dvc pipline processing...'
+    - micromamba run -n mlops_course poetry run dvc remote add -d gdrive://1xnp6-rkkDteCwkTgzl4ExDH1svD8nNRW
     - micromamba run -n mlops_course poetry run dvc fetch
     - micromamba run -n mlops_course poetry run dvc pull
     - micromamba run -n mlops_course poetry run dvc repro -f
