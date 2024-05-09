@@ -64,6 +64,7 @@ stages:
     - dvc_artifacts\models\vectorizer.pickle
     - dvc_scripts\evaluate.py
     metrics:
-    - dvc_artifacts\summary.json
+    - dvc_artifacts\summary.json:
+        cache: false
     plots:
     - dvc_artifacts\conflusion_matrix.png
