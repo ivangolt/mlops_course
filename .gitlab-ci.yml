@@ -13,6 +13,8 @@ services:
 
 variables:
   DOCKER_TLS_CERTDIR: "/certs"
+  GDRIVE_SA_JSON: "$DVC_JSON"
+
     
 build:
   image: docker:24.0.5
@@ -53,7 +55,7 @@ ruff-running:
   script:
   - micromamba run -n mlops_course poetry run ruff check .
 
- 
+
 dvc-cache:
   stage: dvc
   script:
@@ -61,6 +63,7 @@ dvc-cache:
     - micromamba run -n mlops_course  dvc remote default dvc_dz
     - micromamba run -n mlops_course  dvc remote modify dvc_dz gdrive_use_service_account true 
     - echo 'connection ok'
+    - micromamba run -n mlops_course dvc remote modify dvc_dz gdrive_service_account_json_file_path  $DVC_JSON
     - micromamba run -n mlops_course dvc pull
     - micromamba run -n mlops_course dvc repro
     - micromamba run -n mlops_course dvc metrics diff
