@@ -107,8 +107,8 @@ stages:
       size: 2075071
     - path: dvc_scripts\evaluate.py
       hash: md5
-      md5: cfa85aea4e08cca1dc8519012f634564
-      size: 4049
+      md5: 955b46f5dcd45f4987e8d16f1991149b
+      size: 4042
     outs:
     - path: dvc_artifacts\conflusion_matrix.png
       hash: md5
