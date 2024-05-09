@@ -3,5 +3,4 @@
     autostage = true
 ['remote "dvc_dz"']
     url = gdrive://1xnp6-rkkDteCwkTgzl4ExDH1svD8nNRW
-    gdrive_acknowledge_abuse = true
-    gdrive_use_service_account = true
+
