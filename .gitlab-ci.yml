@@ -60,8 +60,11 @@ dvc-cache:
     - echo 'Dvc pipline processing...'
     - micromamba run -n mlops_course  dvc remote default dvc_dz
     - micromamba run -n mlops_course  dvc remote modify dvc_dz gdrive_use_service_account true 
-    - micromamba run -n  dvc pull
-    - micromamba run -n dvc repro
+    - echo 'connection ok'
+    - micromamba run -n mlops_course dvc pull
+    - micromamba run -n mlops_course dvc repro
+    - micromamba run -n mlops_course dvc metrics diff
+
 
 
 pypi-release:
