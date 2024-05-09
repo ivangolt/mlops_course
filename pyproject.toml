@@ -30,6 +30,7 @@ dvc = "^3.50.1"
 dvc-gdrive = "^3.0.1"
 nltk = "^3.8.1"
 click = "^8.1.7"
+catboost = "^1.2.5"
 
 [build-system]
 requires = ["poetry-core"]
