@@ -61,7 +61,7 @@ stages:
     outs:
     - path: dvc_artifacts\models\vectorizer.pickle
       hash: md5
-      md5: ecc3530b6c7cb720c4baf4b994436f0a
+      md5: 2953d5db6a85a86f2af2e8f393299075
       size: 2075071
   train_ml_model:
     cmd: "python dvc_scripts cli-train  data\\dvc_data\\processed\\train.csv  dvc_artifacts\\\
@@ -73,7 +73,7 @@ stages:
       size: 27981865
     - path: dvc_artifacts\models\vectorizer.pickle
       hash: md5
-      md5: ecc3530b6c7cb720c4baf4b994436f0a
+      md5: 2953d5db6a85a86f2af2e8f393299075
       size: 2075071
     - path: dvc_scripts\train_model.py
       hash: md5
@@ -103,7 +103,7 @@ stages:
       size: 160723
     - path: dvc_artifacts\models\vectorizer.pickle
       hash: md5
-      md5: ecc3530b6c7cb720c4baf4b994436f0a
+      md5: 2953d5db6a85a86f2af2e8f393299075
       size: 2075071
     - path: dvc_scripts\evaluate.py
       hash: md5
