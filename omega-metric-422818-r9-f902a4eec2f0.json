@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "omega-metric-422818-r9",
+  "private_key_id": "f902a4eec2f0b6b9382a9f94837919f2ccda3601",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDI2zzM6xgYau7N\n5q1ZYq9qtPmgNzqkn5/BE2nN0IEOaNiPn2U3PveBWVR6OfLV89K4aIRkr9fLBJEc\naOQAhZNyq95pIk1HW0Y5Rixvqk8phCKNXbA7ioEW/7LcIfThV5dHvoEvakAWpAeR\nv7RDmed9NSNI9WaEWyLG4OF6XgQiJW89nxqNvjupRiDWAGKcsBmKQmkq5ig9zCRm\n2MNE+fe7Euu/6WTHURAPJyVhQDQXhn3DxdjVmrevJ+UNws4dZmvJaJq+orWLtB8B\nj5kZVPJ+M4CBqa23Ym9IwBJCReIwsybxh3bpMRowEeNJaRby3lz4YKWbugCpC4Un\nxLnF4yIDAgMBAAECggEAYCpDanMWpr4v1qoejgDHLsY2DATVUXNRZ/4U9qLg31bI\ndL8ilThTBP2RijGLd+9UkNENri1Ymo11so3vt+Y8SbdK9bgkGslzDkHwTYhTfXOT\nnW5hTaiLFMlYx7eESI2I0yM9M8fhplVjgF8x/fnGUParjadcrXr65BBQNCemP/gm\nLNHtUnZy4AN+hfRXniRnPXkT2UFlkLUALQTmiLH311+i0fdzvQEARt0FKEFAx06Y\nknQWDiMnXkVjz4ei/KhGZIqjIVCguCZNNXty7/cn08ZwV0f9CMG5NPnzkTEtHHqd\nkdU+tnFtIOCFLp92CXUSQ2fDXU4sRNpsPA2/GoNXFQKBgQDk3kVhzdh8/UqqLz8K\nPQjAtXldGWm+hSI7mDZrIzA9lozk9So/O4BaUTsQQywQU8/6F2D3Ldtx/8T/LLQf\n+1+4Z5POfuegJiwq6cMQtqXVAmsX4O0SSKGXEFkcLoJA3xLfwo0z0qnnehE3Ho+f\nBdW3mm8rqtFN5SeSzJEbPdDF1QKBgQDgqtvIWqIknoq3ynzIatjnav4oYWHbmpgf\n1mea7TR/+Otjh/5yzSX2TH5HPgygEOpxA5fVIkbuYBCxtoW3NxohWdGzQU+9NwjO\nIM8YYiUSSlOer4rIjWlhIlXt+Gj9C8X+0fpZ97MEmG4fBT6sAfnvGwiQM5gKaPKg\nqctvb/R8dwKBgQCc0v2B3hYo1zsRUFyG/HmB6xflRmOiDAIACfXIBg2pNf8HaELx\nnyj9OkoZg52u9m89dEWaOg7zl4n6PDyU6Z+WcUrjpSu8HkwHf7SNQEpzojuV2ic4\nbxJiu+4DlI7mOrTpJJuy1fhcR9WCCmvpUIs4SxdAOcU/9fTe71PC8eGbnQKBgCmG\nSuMIJWnhR8Bak5+zZ+21783k2eJt+2n/Bd0ztH1ms5MM4rGzSy3vy3M9e7XmCn7i\n7CA/mp6acNt34dUQQSsi38hi7OsLDfyTQdO+6B0uUbBFv7/7qxuB7iHyxOzoTSsh\nAkW4q4TQ66GeJYxDPT+9XmLQtmxOI3Igj/JD3gtXAoGBAIiwBj7zN7DWW5jjBWtX\nnPosa869C+LiIyRssnI9nWu2axU8fxbg58VPN0lzWqACXmXLG/P5z/iSZuLz8/ny\ngTJmLhffTMGJiuwr0CMu+knz2GaArJJL9lnIdclc/Mvva25bfekjwQL8YXVMX4Dr\nAGIQyn4v/sPrPk1CZl2dts5M\n-----END PRIVATE KEY-----\n",
+  "client_email": "dvc-dz@omega-metric-422818-r9.iam.gserviceaccount.com",
+  "client_id": "112068239903234180193",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dvc-dz%40omega-metric-422818-r9.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
