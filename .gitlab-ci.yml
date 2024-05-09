@@ -58,7 +58,7 @@ dvc-cache:
   stage: dvc
   script:
     - echo 'Dvc pipline processing...'
-    - micromamba run -n mlops_course poetry run dvc remote add -d dvc_dz gdrive://1xnp6-rkkDteCwkTgzl4ExDH1svD8nNRW
+    - micromamba run -n mlops_course poetry run dvc remote add --d dvc_dz gdrive://1xnp6-rkkDteCwkTgzl4ExDH1svD8nNRW
     - echo 'Connection ok'
     - micromamba run -n mlops_course poetry run dvc fetch
     - micromamba run -n mlops_course poetry run dvc pull
