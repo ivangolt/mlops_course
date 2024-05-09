@@ -98,6 +98,8 @@ Hydra framework application is implemented. Configuration file config.yaml inclu
 
 See the [report](docs\Snakemake_Hydra_pipelines.qmd) for details of the implementation in the code
 
+## Dvc
+
 ## Contacts
 
 If you have any questions or suggestions regarding the development methodology in this repository, please contact us at:

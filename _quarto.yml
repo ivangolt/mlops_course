@@ -13,6 +13,8 @@ website:
         text: Snakemake_Hydra
       - href: docs/snakemake_hydra.html
         text: snakemake_hydra_code
+      - href: docs/dvc.html
+        text: dvc
       - href: about.html
         text: about site
       
