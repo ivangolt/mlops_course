@@ -1,10 +1,10 @@
 stages:
   - docker
   - linting
+  - dvc
   - build
   - publish
   - pages
-
 
 
 
@@ -33,7 +33,6 @@ build:
 
 
 
-
 default:
 
   image: mambaorg/micromamba
@@ -50,12 +49,19 @@ default:
 
 
 ruff-running:
-
-
   stage: linting
   script:
   - micromamba run -n mlops_course poetry run ruff check .
 
+ 
+dvc-cache:
+  stage: dvc
+  script:
+    - micromamba run -n mlops_course poetry run dvc remote add -d gdrive $DVC_URL
+    - micromamba run -n mlops_course poetry run dvc fetch
+    - micromamba run -n mlops_course poetry run dvc pull
+    - micromamba run -n mlops_course poetry run dvc repro -f
+    - micromamba run -n mlops_course poetry run dvc status -c
 
 
 pypi-release:
