@@ -17,8 +17,8 @@ stages:
       md5: 70b2e0bfc880984465c1c91ed656b9ad
       size: 38952625
   split_data:
-    cmd: python dvc_scripts cli-split data\dvc_data\processed\data_preprocessed.csv
-      data\dvc_data\processed\train.csv data\dvc_data\processed\test.csv
+    cmd: "python dvc_scripts cli-split  data\\dvc_data\\processed\\data_preprocessed.csv\
+      \  data\\dvc_data\\processed\\train.csv  data\\dvc_data\\processed\\test.csv\n"
     deps:
     - path: data\dvc_data\processed\data_preprocessed.csv
       hash: md5
@@ -42,7 +42,8 @@ stages:
       md5: 13104a18af0b42bc0422dc9a199b7847
       size: 27981865
   train_vectorizer:
-    cmd: python dvc_scripts cli-tfidf data\dvc_data\processed\train.csv dvc_artifacts\models\vectorizer.pickle
+    cmd: "python dvc_scripts cli-tfidf data\\dvc_data\\processed\\train.csv  dvc_artifacts\\\
+      models\\vectorizer.pickle\n"
     deps:
     - path: data\dvc_data\processed\train.csv
       hash: md5
@@ -60,11 +61,11 @@ stages:
     outs:
     - path: dvc_artifacts\models\vectorizer.pickle
       hash: md5
-      md5: d5b8ab9884796c15d8aaaee880cda15f
+      md5: dc33ef4f47d5aeed151b9c6e038efa4b
       size: 2075071
   train_ml_model:
-    cmd: python dvc_scripts cli-train data\dvc_data\processed\train.csv dvc_artifacts\models\vectorizer.pickle
-      dvc_artifacts\ml_models\logistic_regression.pikle
+    cmd: "python dvc_scripts cli-train  data\\dvc_data\\processed\\train.csv  dvc_artifacts\\\
+      models\\vectorizer.pickle  dvc_artifacts\\ml_models\\logistic_regression.pikle\n"
     deps:
     - path: data\dvc_data\processed\train.csv
       hash: md5
@@ -72,7 +73,7 @@ stages:
       size: 27981865
     - path: dvc_artifacts\models\vectorizer.pickle
       hash: md5
-      md5: d5b8ab9884796c15d8aaaee880cda15f
+      md5: dc33ef4f47d5aeed151b9c6e038efa4b
       size: 2075071
     - path: dvc_scripts\train_model.py
       hash: md5
@@ -88,8 +89,9 @@ stages:
       md5: e4c975722537f822bd8f98c85fbdd8d2
       size: 160723
   test_model:
-    cmd: python dvc_scripts cli-testing data\dvc_data\processed\test.csv dvc_artifacts\ml_models\logistic_regression.pikle
-      dvc_artifacts\models\vectorizer.pickle dvc_artifacts\summary.json dvc_artifacts\conflusion_matrix.png
+    cmd: "python dvc_scripts cli-testing  data\\dvc_data\\processed\\test.csv  dvc_artifacts\\\
+      ml_models\\logistic_regression.pikle  dvc_artifacts\\models\\vectorizer.pickle\
+      \  dvc_artifacts\\summary.json  dvc_artifacts\\conflusion_matrix.png\n"
     deps:
     - path: data\dvc_data\processed\test.csv
       hash: md5
@@ -101,7 +103,7 @@ stages:
       size: 160723
     - path: dvc_artifacts\models\vectorizer.pickle
       hash: md5
-      md5: d5b8ab9884796c15d8aaaee880cda15f
+      md5: dc33ef4f47d5aeed151b9c6e038efa4b
       size: 2075071
     - path: dvc_scripts\evaluate.py
       hash: md5

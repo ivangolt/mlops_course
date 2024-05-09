@@ -8,7 +8,11 @@ stages:
     outs:
     - data\dvc_data\processed\data_preprocessed.csv
   split_data:
-    cmd: python dvc_scripts cli-split data\dvc_data\processed\data_preprocessed.csv data\dvc_data\processed\train.csv data\dvc_data\processed\test.csv
+    cmd: >
+     python dvc_scripts cli-split 
+     data\dvc_data\processed\data_preprocessed.csv 
+     data\dvc_data\processed\train.csv 
+     data\dvc_data\processed\test.csv
     params:
     - random_state
     - test_train_split
@@ -20,7 +24,10 @@ stages:
     - data\dvc_data\processed\test.csv
 
   train_vectorizer:
-    cmd: python dvc_scripts cli-tfidf data\dvc_data\processed\train.csv dvc_artifacts\models\vectorizer.pickle
+    cmd: > 
+     python dvc_scripts cli-tfidf
+     data\dvc_data\processed\train.csv 
+     dvc_artifacts\models\vectorizer.pickle
     params:
     - vectorizer_tfidf
     deps:
@@ -29,7 +36,11 @@ stages:
     outs:
     - dvc_artifacts\models\vectorizer.pickle
   train_ml_model:
-    cmd: python dvc_scripts cli-train data\dvc_data\processed\train.csv dvc_artifacts\models\vectorizer.pickle dvc_artifacts\ml_models\logistic_regression.pikle
+    cmd: >
+     python dvc_scripts cli-train 
+     data\dvc_data\processed\train.csv 
+     dvc_artifacts\models\vectorizer.pickle 
+     dvc_artifacts\ml_models\logistic_regression.pikle
     params:
     - logistic_regression
     deps:
@@ -40,7 +51,13 @@ stages:
     - dvc_artifacts\ml_models\logistic_regression.pikle
 
   test_model:
-    cmd: python dvc_scripts cli-testing data\dvc_data\processed\test.csv dvc_artifacts\ml_models\logistic_regression.pikle dvc_artifacts\models\vectorizer.pickle dvc_artifacts\summary.json dvc_artifacts\conflusion_matrix.png
+    cmd: >
+     python dvc_scripts cli-testing 
+     data\dvc_data\processed\test.csv 
+     dvc_artifacts\ml_models\logistic_regression.pikle 
+     dvc_artifacts\models\vectorizer.pickle 
+     dvc_artifacts\summary.json 
+     dvc_artifacts\conflusion_matrix.png
     deps:
     - data\dvc_data\processed\test.csv
     - dvc_artifacts\ml_models\logistic_regression.pikle
