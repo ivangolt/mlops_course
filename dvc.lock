@@ -103,12 +103,12 @@ stages:
       size: 160723
     - path: dvc_artifacts\models\vectorizer.pickle
       hash: md5
-      md5: dc33ef4f47d5aeed151b9c6e038efa4b
+      md5: ecc3530b6c7cb720c4baf4b994436f0a
       size: 2075071
     - path: dvc_scripts\evaluate.py
       hash: md5
-      md5: 955b46f5dcd45f4987e8d16f1991149b
-      size: 4042
+      md5: cfa85aea4e08cca1dc8519012f634564
+      size: 4049
     outs:
     - path: dvc_artifacts\conflusion_matrix.png
       hash: md5
