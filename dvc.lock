@@ -67,7 +67,7 @@ stages:
       size: 2215120
   train_ml_model:
     cmd: "python dvc_scripts cli-train  data/dvc_data/processed/train.csv  dvc_artifacts/models/vectorizer.pickle\
-      \  dvc_artifacts/ml_models/logistic_regression.pikle\n"
+      \  dvc_artifacts/ml_models/catboost.pikle\n"
     deps:
     - path: data/dvc_data/processed/train.csv
       hash: md5
@@ -79,45 +79,47 @@ stages:
       size: 2215120
     - path: dvc_scripts/train_model.py
       hash: md5
-      md5: 0afddaf98052871d5990a96ad56b3e3a
-      size: 1273
-      isexec: true
+      md5: 6fa9d0ca1db9adab495d7a759b46cf30
+      size: 1379
     params:
       params.yaml:
-        logistic_regression:
+        catboost:
           random_state: 42
+          iterations: 1000
+          learning_rate: 0.001
+          auto_class_weights: Balanced
+          verbose: false
     outs:
-    - path: dvc_artifacts/ml_models/logistic_regression.pikle
+    - path: dvc_artifacts/ml_models/catboost.pikle
       hash: md5
-      md5: c992277c932785f1f95c050c55390640
-      size: 160723
+      md5: ef1227865637854e348dbdcab7046d16
+      size: 1984961
   test_model:
-    cmd: "python dvc_scripts cli-testing  data/dvc_data/processed/test.csv  dvc_artifacts/ml_models/logistic_regression.pikle\
-      \  dvc_artifacts/models/vectorizer.pickle  dvc_artifacts/summary.json  dvc_artifacts/conflusion_matrix.png\n"
+    cmd: "python dvc_scripts cli-testing  data/dvc_data/processed/test.csv  dvc_artifacts/ml_models/catboost.pikle
+      dvc_artifacts/models/vectorizer.pickle  dvc_artifacts/summary.json  dvc_artifacts/conflusion_matrix.png\n"
     deps:
     - path: data/dvc_data/processed/test.csv
       hash: md5
       md5: ead1f3fda31f9b6bfbef0a40f95da8f8
       size: 11926940
-    - path: dvc_artifacts/ml_models/logistic_regression.pikle
+    - path: dvc_artifacts/ml_models/catboost.pikle
       hash: md5
-      md5: c992277c932785f1f95c050c55390640
-      size: 160723
+      md5: ef1227865637854e348dbdcab7046d16
+      size: 1984961
     - path: dvc_artifacts/models/vectorizer.pickle
       hash: md5
       md5: e761919fa8d4946d3f8aab9685acca6d
       size: 2215120
     - path: dvc_scripts/evaluate.py
       hash: md5
-      md5: cfa85aea4e08cca1dc8519012f634564
-      size: 4049
-      isexec: true
+      md5: 87c5985986ae46a96df4c594edcd4ec0
+      size: 4037
     outs:
     - path: dvc_artifacts/conflusion_matrix.png
       hash: md5
-      md5: 088fb5567d950129056be1c5bbb0727d
-      size: 13339
+      md5: 1b4f5bf2e5ed8ee76fb61c8bf55341ab
+      size: 12790
     - path: dvc_artifacts/summary.json
       hash: md5
-      md5: f11d94438f4204f882410d09b02f8018
-      size: 395
+      md5: ccd3a88aba6db219b7123aac8a3bddcc
+      size: 394

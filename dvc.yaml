@@ -40,27 +40,28 @@ stages:
      python dvc_scripts cli-train 
      data/dvc_data/processed/train.csv 
      dvc_artifacts/models/vectorizer.pickle 
-     dvc_artifacts/ml_models/logistic_regression.pikle
+     dvc_artifacts/ml_models/catboost.pikle
     params:
-    - logistic_regression
+    - catboost
     deps:
     - data/dvc_data/processed/train.csv
     - dvc_artifacts/models/vectorizer.pickle
     - dvc_scripts/train_model.py
     outs:
-    - dvc_artifacts/ml_models/logistic_regression.pikle
+    - dvc_artifacts/ml_models/catboost.pikle
+    
 
   test_model:
     cmd: >
      python dvc_scripts cli-testing 
      data/dvc_data/processed/test.csv 
-     dvc_artifacts/ml_models/logistic_regression.pikle 
+     dvc_artifacts/ml_models/catboost.pikle
      dvc_artifacts/models/vectorizer.pickle 
      dvc_artifacts/summary.json 
      dvc_artifacts/conflusion_matrix.png
     deps:
     - data/dvc_data/processed/test.csv
-    - dvc_artifacts/ml_models/logistic_regression.pikle
+    - dvc_artifacts/ml_models/catboost.pikle
     - dvc_artifacts/models/vectorizer.pickle
     - dvc_scripts/evaluate.py
     metrics:

@@ -6,7 +6,7 @@ import click
 import dvc.api
 import joblib
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+from catboost import CatBoostClassifier
 
 from .cli import cli
 
@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def train_model(data: pd.DataFrame, vectorizer) -> LogisticRegression:
+def train_model(data: pd.DataFrame, vectorizer) -> CatBoostClassifier:
     params = dvc.api.params_show()
     data = data.dropna()
     features = data["text"]
@@ -23,8 +23,11 @@ def train_model(data: pd.DataFrame, vectorizer) -> LogisticRegression:
 
     features = vectorizer.transform(data["text"])
 
-    model_lr = LogisticRegression(**params["logistic_regression"]).fit(features, target)
-    return model_lr
+    # model_lr = LogisticRegression(**params["logistic_regression"]).fit(features, target)
+    # return model_lr
+
+    model_catboost = CatBoostClassifier(**params["catboost"]).fit(features, target)
+    return model_catboost
 
 
 @cli.command()

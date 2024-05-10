@@ -2,8 +2,13 @@ vectorizer_tfidf:
   max_features: 20000
   analyzer: "word"
 
-logistic_regression:
+
+catboost:
   random_state: 42
+  iterations: 1000
+  learning_rate: 0.001
+  auto_class_weights: "Balanced"
+  verbose: False
 
 random_state: 42
 test_train_split: 0.3

@@ -8,9 +8,9 @@ import click
 import joblib
 import numpy as np
 import pandas as pd
+from catboost import CatBoostClassifier
 from matplotlib import pyplot as plt
 from matplotlib.figure import Figure
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     ConfusionMatrixDisplay,
     classification_report,
@@ -66,7 +66,7 @@ def round_floats_in_dict(data: dict, precision: int = 5) -> dict:
         return data
 
 
-def test_model(data: pd.DataFrame, model: LogisticRegression, vectorizer) -> tuple[dict, Figure]:
+def test_model(data: pd.DataFrame, model: CatBoostClassifier, vectorizer) -> tuple[dict, Figure]:
     """test model
 
     Args:
