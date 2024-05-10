@@ -5,3 +5,5 @@
     url = gdrive://1xnp6-rkkDteCwkTgzl4ExDH1svD8nNRW
     gdrive_use_service_account = true
     gdrive_service_account_user_email = dvc-dz@omega-metric-422818-r9.iam.gserviceaccount.com
+    gdrive_service_account_json_file_path = ../omega-metric-422818-r9-f902a4eec2f0.json
+
