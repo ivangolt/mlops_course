@@ -64,8 +64,8 @@ dvc-cache:
     - micromamba run -n mlops_course  dvc remote modify dvc_dz gdrive_use_service_account true 
     - echo 'connection ok'
     - micromamba run -n mlops_course dvc remote modify dvc_dz gdrive_service_account_json_file_path  $GDRIVE_SA_JSON
-    - micromamba run -n mlops_course dvc pull
-    - micromamba run -n mlops_course dvc repro
+    - micromamba run -n mlops_course dvc pull data/dvc_data/raw_data/data.csv.dvc
+    - micromamba run -n mlops_course dvc repro --force
     - micromamba run -n mlops_course dvc metrics diff
 
 
