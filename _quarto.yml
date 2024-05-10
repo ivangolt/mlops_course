@@ -14,7 +14,7 @@ website:
       - href: docs/snakemake_hydra.html
         text: snakemake_hydra_code
       - href: mlops_course/dvc_report.html
-        text: DVC 
+        text: DVC_pipeline 
       - href: about.html
         text: about site
 
