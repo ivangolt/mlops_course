@@ -11,6 +11,7 @@ stages:
       hash: md5
       md5: aacf63f67cab4e91a6d872d076b54021
       size: 3010
+      isexec: true
     outs:
     - path: data/dvc_data/processed/data_preprocessed.csv
       hash: md5
@@ -28,6 +29,7 @@ stages:
       hash: md5
       md5: e1610a39836f114444764bb07eb69a6b
       size: 1862
+      isexec: true
     params:
       params.yaml:
         random_state: 42
@@ -52,6 +54,7 @@ stages:
       hash: md5
       md5: 3943789d572c4de8de9c2f8e257bb916
       size: 1693
+      isexec: true
     params:
       params.yaml:
         vectorizer_tfidf:
@@ -60,7 +63,7 @@ stages:
     outs:
     - path: dvc_artifacts/models/vectorizer.pickle
       hash: md5
-      md5: 5473ce55a636551a67ef7d1e95408b8f
+      md5: e761919fa8d4946d3f8aab9685acca6d
       size: 2215120
   train_ml_model:
     cmd: "python dvc_scripts cli-train  data/dvc_data/processed/train.csv  dvc_artifacts/models/vectorizer.pickle\
@@ -72,12 +75,13 @@ stages:
       size: 27870360
     - path: dvc_artifacts/models/vectorizer.pickle
       hash: md5
-      md5: 5473ce55a636551a67ef7d1e95408b8f
+      md5: e761919fa8d4946d3f8aab9685acca6d
       size: 2215120
     - path: dvc_scripts/train_model.py
       hash: md5
       md5: 0afddaf98052871d5990a96ad56b3e3a
       size: 1273
+      isexec: true
     params:
       params.yaml:
         logistic_regression:
@@ -101,12 +105,13 @@ stages:
       size: 160723
     - path: dvc_artifacts/models/vectorizer.pickle
       hash: md5
-      md5: 5473ce55a636551a67ef7d1e95408b8f
+      md5: e761919fa8d4946d3f8aab9685acca6d
       size: 2215120
     - path: dvc_scripts/evaluate.py
       hash: md5
       md5: cfa85aea4e08cca1dc8519012f634564
       size: 4049
+      isexec: true
     outs:
     - path: dvc_artifacts/conflusion_matrix.png
       hash: md5
