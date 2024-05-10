@@ -33,22 +33,11 @@ build:
     - docker push $CI_REGISTRY/ivan_golt/mlops_course:latest
 
 
-
-
 default:
-
-  image: mambaorg/micromamba
-  before_script:
-    - micromamba create -f env.yml
-    - micromamba run -n mlops_course poetry config --local cache-dir
-    - micromamba run -n mlops_course poetry install
-
-  cache:
-    key: dependecies-$CI_COMMIT_BRANCH
-    paths: 
-      - .poetry
-
-
+  image:   
+    name: $CI_REGISTRY/ivan_golt/mlops_course 
+    docker:
+      user: root
 
 ruff-running:
   stage: linting
