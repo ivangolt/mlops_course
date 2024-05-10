@@ -12,6 +12,7 @@ from nltk.tokenize import word_tokenize
 
 from .cli import cli
 
+nltk.download("averaged_perceptron_tagger")
 nltk.download("punkt")
 nltk.download("wordnet")
 nltk.download("omw-1.4")
