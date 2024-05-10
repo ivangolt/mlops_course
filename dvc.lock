@@ -1,30 +1,30 @@
 schema: '2.0'
 stages:
   preprocessing:
-    cmd: python dvc_scripts cli-preprocessing data\dvc_data\raw_data\data.csv data\dvc_data\processed\data_preprocessed.csv
+    cmd: python dvc_scripts cli-preprocessing data/dvc_data/raw_data/data.csv data/dvc_data/processed/data_preprocessed.csv
     deps:
-    - path: data\dvc_data\raw_data\data.csv
+    - path: data/dvc_data/raw_data/data.csv
       hash: md5
       md5: 416dbaae1e40fedb40d630edd694833b
       size: 64950309
-    - path: dvc_scripts\preprocessing.py
+    - path: dvc_scripts/preprocessing.py
       hash: md5
-      md5: 6acd853644fe02cf92f06179cecb0640
-      size: 2965
+      md5: aacf63f67cab4e91a6d872d076b54021
+      size: 3010
     outs:
-    - path: data\dvc_data\processed\data_preprocessed.csv
+    - path: data/dvc_data/processed/data_preprocessed.csv
       hash: md5
-      md5: 70b2e0bfc880984465c1c91ed656b9ad
-      size: 38952625
+      md5: 1bbda4cb91992eae879d9e27cff7c982
+      size: 38793332
   split_data:
-    cmd: "python dvc_scripts cli-split  data\\dvc_data\\processed\\data_preprocessed.csv\
-      \  data\\dvc_data\\processed\\train.csv  data\\dvc_data\\processed\\test.csv\n"
+    cmd: "python dvc_scripts cli-split  data/dvc_data/processed/data_preprocessed.csv\
+      \  data/dvc_data/processed/train.csv  data/dvc_data/processed/test.csv\n"
     deps:
-    - path: data\dvc_data\processed\data_preprocessed.csv
+    - path: data/dvc_data/processed/data_preprocessed.csv
       hash: md5
-      md5: 70b2e0bfc880984465c1c91ed656b9ad
-      size: 38952625
-    - path: dvc_scripts\split.py
+      md5: 1bbda4cb91992eae879d9e27cff7c982
+      size: 38793332
+    - path: dvc_scripts/split.py
       hash: md5
       md5: e1610a39836f114444764bb07eb69a6b
       size: 1862
@@ -33,23 +33,22 @@ stages:
         random_state: 42
         test_train_split: 0.3
     outs:
-    - path: data\dvc_data\processed\test.csv
+    - path: data/dvc_data/processed/test.csv
       hash: md5
-      md5: a9913a4d6d1a80564f159c8b0ef6cf2e
-      size: 11974729
-    - path: data\dvc_data\processed\train.csv
+      md5: ead1f3fda31f9b6bfbef0a40f95da8f8
+      size: 11926940
+    - path: data/dvc_data/processed/train.csv
       hash: md5
-      md5: 13104a18af0b42bc0422dc9a199b7847
-      size: 27981865
+      md5: 88f9f54fb3932db922aa159a086aba21
+      size: 27870360
   train_vectorizer:
-    cmd: "python dvc_scripts cli-tfidf data\\dvc_data\\processed\\train.csv  dvc_artifacts\\\
-      models\\vectorizer.pickle\n"
+    cmd: "python dvc_scripts cli-tfidf data/dvc_data/processed/train.csv  dvc_artifacts/models/vectorizer.pickle\n"
     deps:
-    - path: data\dvc_data\processed\train.csv
+    - path: data/dvc_data/processed/train.csv
       hash: md5
-      md5: 13104a18af0b42bc0422dc9a199b7847
-      size: 27981865
-    - path: dvc_scripts\vectorize.py
+      md5: 88f9f54fb3932db922aa159a086aba21
+      size: 27870360
+    - path: dvc_scripts/vectorize.py
       hash: md5
       md5: 3943789d572c4de8de9c2f8e257bb916
       size: 1693
@@ -59,23 +58,23 @@ stages:
           max_features: 20000
           analyzer: word
     outs:
-    - path: dvc_artifacts\models\vectorizer.pickle
+    - path: dvc_artifacts/models/vectorizer.pickle
       hash: md5
-      md5: 2953d5db6a85a86f2af2e8f393299075
-      size: 2075071
+      md5: 5473ce55a636551a67ef7d1e95408b8f
+      size: 2215120
   train_ml_model:
-    cmd: "python dvc_scripts cli-train  data\\dvc_data\\processed\\train.csv  dvc_artifacts\\\
-      models\\vectorizer.pickle  dvc_artifacts\\ml_models\\logistic_regression.pikle\n"
+    cmd: "python dvc_scripts cli-train  data/dvc_data/processed/train.csv  dvc_artifacts/models/vectorizer.pickle\
+      \  dvc_artifacts/ml_models/logistic_regression.pikle\n"
     deps:
-    - path: data\dvc_data\processed\train.csv
+    - path: data/dvc_data/processed/train.csv
       hash: md5
-      md5: 13104a18af0b42bc0422dc9a199b7847
-      size: 27981865
-    - path: dvc_artifacts\models\vectorizer.pickle
+      md5: 88f9f54fb3932db922aa159a086aba21
+      size: 27870360
+    - path: dvc_artifacts/models/vectorizer.pickle
       hash: md5
-      md5: 2953d5db6a85a86f2af2e8f393299075
-      size: 2075071
-    - path: dvc_scripts\train_model.py
+      md5: 5473ce55a636551a67ef7d1e95408b8f
+      size: 2215120
+    - path: dvc_scripts/train_model.py
       hash: md5
       md5: 0afddaf98052871d5990a96ad56b3e3a
       size: 1273
@@ -84,37 +83,36 @@ stages:
         logistic_regression:
           random_state: 42
     outs:
-    - path: dvc_artifacts\ml_models\logistic_regression.pikle
+    - path: dvc_artifacts/ml_models/logistic_regression.pikle
       hash: md5
-      md5: e4c975722537f822bd8f98c85fbdd8d2
+      md5: c992277c932785f1f95c050c55390640
       size: 160723
   test_model:
-    cmd: "python dvc_scripts cli-testing  data\\dvc_data\\processed\\test.csv  dvc_artifacts\\\
-      ml_models\\logistic_regression.pikle  dvc_artifacts\\models\\vectorizer.pickle\
-      \  dvc_artifacts\\summary.json  dvc_artifacts\\conflusion_matrix.png\n"
+    cmd: "python dvc_scripts cli-testing  data/dvc_data/processed/test.csv  dvc_artifacts/ml_models/logistic_regression.pikle\
+      \  dvc_artifacts/models/vectorizer.pickle  dvc_artifacts/summary.json  dvc_artifacts/conflusion_matrix.png\n"
     deps:
-    - path: data\dvc_data\processed\test.csv
+    - path: data/dvc_data/processed/test.csv
       hash: md5
-      md5: a9913a4d6d1a80564f159c8b0ef6cf2e
-      size: 11974729
-    - path: dvc_artifacts\ml_models\logistic_regression.pikle
+      md5: ead1f3fda31f9b6bfbef0a40f95da8f8
+      size: 11926940
+    - path: dvc_artifacts/ml_models/logistic_regression.pikle
       hash: md5
-      md5: e4c975722537f822bd8f98c85fbdd8d2
+      md5: c992277c932785f1f95c050c55390640
       size: 160723
-    - path: dvc_artifacts\models\vectorizer.pickle
+    - path: dvc_artifacts/models/vectorizer.pickle
       hash: md5
-      md5: 2953d5db6a85a86f2af2e8f393299075
-      size: 2075071
-    - path: dvc_scripts\evaluate.py
+      md5: 5473ce55a636551a67ef7d1e95408b8f
+      size: 2215120
+    - path: dvc_scripts/evaluate.py
       hash: md5
       md5: cfa85aea4e08cca1dc8519012f634564
       size: 4049
     outs:
-    - path: dvc_artifacts\conflusion_matrix.png
+    - path: dvc_artifacts/conflusion_matrix.png
       hash: md5
-      md5: 601e2e2f3d119bc971aee517488a1e3a
-      size: 12924
-    - path: dvc_artifacts\summary.json
+      md5: 088fb5567d950129056be1c5bbb0727d
+      size: 13339
+    - path: dvc_artifacts/summary.json
       hash: md5
-      md5: 866210bae25354415f32ce74c717c267
+      md5: f11d94438f4204f882410d09b02f8018
       size: 395
