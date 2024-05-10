@@ -1,70 +1,70 @@
 stages:
 
   preprocessing:
-    cmd: python dvc_scripts cli-preprocessing data\dvc_data\raw_data\data.csv data\dvc_data\processed\data_preprocessed.csv
+    cmd: python dvc_scripts cli-preprocessing data/dvc_data/raw_data/data.csv data/dvc_data/processed/data_preprocessed.csv
     deps:
-    - data\dvc_data\raw_data\data.csv
-    - dvc_scripts\preprocessing.py
+    - data/dvc_data/raw_data/data.csv
+    - dvc_scripts/preprocessing.py
     outs:
-    - data\dvc_data\processed\data_preprocessed.csv
+    - data/dvc_data/processed/data_preprocessed.csv
   split_data:
     cmd: >
      python dvc_scripts cli-split 
-     data\dvc_data\processed\data_preprocessed.csv 
-     data\dvc_data\processed\train.csv 
-     data\dvc_data\processed\test.csv
+     data/dvc_data/processed/data_preprocessed.csv 
+     data/dvc_data/processed/train.csv 
+     data/dvc_data/processed/test.csv
     params:
     - random_state
     - test_train_split
     deps:
-    - data\dvc_data\processed\data_preprocessed.csv
-    - dvc_scripts\split.py
+    - data/dvc_data/processed/data_preprocessed.csv
+    - dvc_scripts/split.py
     outs:
-    - data\dvc_data\processed\train.csv
-    - data\dvc_data\processed\test.csv
+    - data/dvc_data/processed/train.csv
+    - data/dvc_data/processed/test.csv
 
   train_vectorizer:
     cmd: > 
      python dvc_scripts cli-tfidf
-     data\dvc_data\processed\train.csv 
-     dvc_artifacts\models\vectorizer.pickle
+     data/dvc_data/processed/train.csv 
+     dvc_artifacts/models/vectorizer.pickle
     params:
     - vectorizer_tfidf
     deps:
-    - data\dvc_data\processed\train.csv
-    - dvc_scripts\vectorize.py
+    - data/dvc_data/processed/train.csv
+    - dvc_scripts/vectorize.py
     outs:
-    - dvc_artifacts\models\vectorizer.pickle
+    - dvc_artifacts/models/vectorizer.pickle
   train_ml_model:
     cmd: >
      python dvc_scripts cli-train 
-     data\dvc_data\processed\train.csv 
-     dvc_artifacts\models\vectorizer.pickle 
-     dvc_artifacts\ml_models\logistic_regression.pikle
+     data/dvc_data/processed/train.csv 
+     dvc_artifacts/models/vectorizer.pickle 
+     dvc_artifacts/ml_models/logistic_regression.pikle
     params:
     - logistic_regression
     deps:
-    - data\dvc_data\processed\train.csv
-    - dvc_artifacts\models\vectorizer.pickle
-    - dvc_scripts\train_model.py
+    - data/dvc_data/processed/train.csv
+    - dvc_artifacts/models/vectorizer.pickle
+    - dvc_scripts/train_model.py
     outs:
-    - dvc_artifacts\ml_models\logistic_regression.pikle
+    - dvc_artifacts/ml_models/logistic_regression.pikle
 
   test_model:
     cmd: >
      python dvc_scripts cli-testing 
-     data\dvc_data\processed\test.csv 
-     dvc_artifacts\ml_models\logistic_regression.pikle 
-     dvc_artifacts\models\vectorizer.pickle 
-     dvc_artifacts\summary.json 
-     dvc_artifacts\conflusion_matrix.png
+     data/dvc_data/processed/test.csv 
+     dvc_artifacts/ml_models/logistic_regression.pikle 
+     dvc_artifacts/models/vectorizer.pickle 
+     dvc_artifacts/summary.json 
+     dvc_artifacts/conflusion_matrix.png
     deps:
-    - data\dvc_data\processed\test.csv
-    - dvc_artifacts\ml_models\logistic_regression.pikle
-    - dvc_artifacts\models\vectorizer.pickle
-    - dvc_scripts\evaluate.py
+    - data/dvc_data/processed/test.csv
+    - dvc_artifacts/ml_models/logistic_regression.pikle
+    - dvc_artifacts/models/vectorizer.pickle
+    - dvc_scripts/evaluate.py
     metrics:
-    - dvc_artifacts\summary.json
+    - dvc_artifacts/summary.json
     plots:
-    - dvc_artifacts\conflusion_matrix.png
+    - dvc_artifacts/conflusion_matrix.png
     
