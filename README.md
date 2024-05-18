@@ -100,8 +100,16 @@ See the [report](docs/Snakemake_Hydra_pipelines.qmd) for details of the implemen
 
 ## DVC
 
+[DVC report](https://mlops-course-ivan-golt-60125f3fc50abd52b043bcde8b034b2d56e0c402.gitlab.io/mlops_course/dvc_report.html)
 
-## Dvc
+## LakeFS
+
+[LakeFS report](docs/lakefs.md)
+
+## Mlflow
+
+[Mlflow report](https://mlops-course-ivan-golt-60125f3fc50abd52b043bcde8b034b2d56e0c402.gitlab.io/docs/mlflow.html)
+ 
 
 ## Contacts
 
