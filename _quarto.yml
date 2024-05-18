@@ -13,15 +13,19 @@ website:
         text: Snakemake_Hydra
       - href: docs/snakemake_hydra.html
         text: snakemake_hydra_code
+      - href: mlops_course/dvc_report.html
+        text: DVC
+      - href: mlops_course/lakefs.html
+        text: LakeFS
+      - href: docs/mlflow.html
+        text: Mlflow report
       - href: about.html
         text: about site
-      
+
+
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-
-
-

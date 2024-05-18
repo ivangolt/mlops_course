@@ -1,0 +1,125 @@
+schema: '2.0'
+stages:
+  preprocessing:
+    cmd: python dvc_scripts cli-preprocessing data/dvc_data/raw_data/data.csv data/dvc_data/processed/data_preprocessed.csv
+    deps:
+    - path: data/dvc_data/raw_data/data.csv
+      hash: md5
+      md5: 416dbaae1e40fedb40d630edd694833b
+      size: 64950309
+    - path: dvc_scripts/preprocessing.py
+      hash: md5
+      md5: aacf63f67cab4e91a6d872d076b54021
+      size: 3010
+      isexec: true
+    outs:
+    - path: data/dvc_data/processed/data_preprocessed.csv
+      hash: md5
+      md5: 1bbda4cb91992eae879d9e27cff7c982
+      size: 38793332
+  split_data:
+    cmd: "python dvc_scripts cli-split  data/dvc_data/processed/data_preprocessed.csv\
+      \  data/dvc_data/processed/train.csv  data/dvc_data/processed/test.csv\n"
+    deps:
+    - path: data/dvc_data/processed/data_preprocessed.csv
+      hash: md5
+      md5: 1bbda4cb91992eae879d9e27cff7c982
+      size: 38793332
+    - path: dvc_scripts/split.py
+      hash: md5
+      md5: e1610a39836f114444764bb07eb69a6b
+      size: 1862
+      isexec: true
+    params:
+      params.yaml:
+        random_state: 42
+        test_train_split: 0.3
+    outs:
+    - path: data/dvc_data/processed/test.csv
+      hash: md5
+      md5: ead1f3fda31f9b6bfbef0a40f95da8f8
+      size: 11926940
+    - path: data/dvc_data/processed/train.csv
+      hash: md5
+      md5: 88f9f54fb3932db922aa159a086aba21
+      size: 27870360
+  train_vectorizer:
+    cmd: "python dvc_scripts cli-tfidf data/dvc_data/processed/train.csv  dvc_artifacts/models/vectorizer.pickle\n"
+    deps:
+    - path: data/dvc_data/processed/train.csv
+      hash: md5
+      md5: 88f9f54fb3932db922aa159a086aba21
+      size: 27870360
+    - path: dvc_scripts/vectorize.py
+      hash: md5
+      md5: 3943789d572c4de8de9c2f8e257bb916
+      size: 1693
+      isexec: true
+    params:
+      params.yaml:
+        vectorizer_tfidf:
+          max_features: 20000
+          analyzer: word
+    outs:
+    - path: dvc_artifacts/models/vectorizer.pickle
+      hash: md5
+      md5: e761919fa8d4946d3f8aab9685acca6d
+      size: 2215120
+  train_ml_model:
+    cmd: "python dvc_scripts cli-train  data/dvc_data/processed/train.csv  dvc_artifacts/models/vectorizer.pickle\
+      \  dvc_artifacts/ml_models/catboost.pikle\n"
+    deps:
+    - path: data/dvc_data/processed/train.csv
+      hash: md5
+      md5: 88f9f54fb3932db922aa159a086aba21
+      size: 27870360
+    - path: dvc_artifacts/models/vectorizer.pickle
+      hash: md5
+      md5: e761919fa8d4946d3f8aab9685acca6d
+      size: 2215120
+    - path: dvc_scripts/train_model.py
+      hash: md5
+      md5: 6fa9d0ca1db9adab495d7a759b46cf30
+      size: 1379
+    params:
+      params.yaml:
+        catboost:
+          random_state: 42
+          iterations: 1000
+          learning_rate: 0.001
+          auto_class_weights: Balanced
+          verbose: false
+    outs:
+    - path: dvc_artifacts/ml_models/catboost.pikle
+      hash: md5
+      md5: ef1227865637854e348dbdcab7046d16
+      size: 1984961
+  test_model:
+    cmd: "python dvc_scripts cli-testing  data/dvc_data/processed/test.csv  dvc_artifacts/ml_models/catboost.pikle
+      dvc_artifacts/models/vectorizer.pickle  dvc_artifacts/summary.json  dvc_artifacts/conflusion_matrix.png\n"
+    deps:
+    - path: data/dvc_data/processed/test.csv
+      hash: md5
+      md5: ead1f3fda31f9b6bfbef0a40f95da8f8
+      size: 11926940
+    - path: dvc_artifacts/ml_models/catboost.pikle
+      hash: md5
+      md5: ef1227865637854e348dbdcab7046d16
+      size: 1984961
+    - path: dvc_artifacts/models/vectorizer.pickle
+      hash: md5
+      md5: e761919fa8d4946d3f8aab9685acca6d
+      size: 2215120
+    - path: dvc_scripts/evaluate.py
+      hash: md5
+      md5: 87c5985986ae46a96df4c594edcd4ec0
+      size: 4037
+    outs:
+    - path: dvc_artifacts/conflusion_matrix.png
+      hash: md5
+      md5: 1b4f5bf2e5ed8ee76fb61c8bf55341ab
+      size: 12790
+    - path: dvc_artifacts/summary.json
+      hash: md5
+      md5: ccd3a88aba6db219b7123aac8a3bddcc
+      size: 394
