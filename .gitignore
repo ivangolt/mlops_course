@@ -6,3 +6,5 @@ data/*.csv
 _site/
 /.quarto/
 /.snakemake/
+*.csv
+   
