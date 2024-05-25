@@ -109,6 +109,10 @@ See the [report](docs/Snakemake_Hydra_pipelines.qmd) for details of the implemen
 ## Mlflow
 
 [Mlflow report](https://mlops-course-ivan-golt-60125f3fc50abd52b043bcde8b034b2d56e0c402.gitlab.io/docs/mlflow.html)
+
+## ClearML
+
+[ClearML report](docs/clearml_report.md)
  
 
 ## Contacts
