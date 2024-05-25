@@ -4,7 +4,7 @@ default:
 project:
   name: "Toxic comments"
 
-# Датасет с этими параметрами д.б. загружен в ClearML
+
 dataset:
   project: "Toxic comments"
   name: "Raw data"
