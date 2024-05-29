@@ -113,6 +113,10 @@ See the [report](docs/Snakemake_Hydra_pipelines.qmd) for details of the implemen
 ## ClearML
 
 [ClearML report](docs/clearml_report.md)
+
+## Hypotesis
+
+[Hypotesis report](mlops_course/hypotesis.ipynb)
  
 
 ## Contacts
