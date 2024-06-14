@@ -5,6 +5,14 @@ PREDICTION_API_URL = "http://localhost:8000/api/predict/"
 
 
 def get_tone_prediction(message):
+    """function which make response on internal service and take answer
+
+    Args:
+        message (_type_): responsed text
+
+    Returns:
+        answer from internal service
+    """
     response = requests.post(PREDICTION_API_URL, json={"text": message})
     if response.status_code == 200:
         response_dict = dict(response.json())

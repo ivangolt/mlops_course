@@ -117,7 +117,13 @@ See the [report](docs/Snakemake_Hydra_pipelines.qmd) for details of the implemen
 ## Hypotesis
 
 [Hypotesis report](mlops_course/hypotesis.ipynb)
- 
+
+## FastAPI 
+
+[FastAPI report](docs/fastapi.md)
+
+## Streamlit
+[Streamlit report](docs/streamlit.md)
 
 ## Contacts
 
