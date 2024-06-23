@@ -16,7 +16,7 @@ This service can be started in two ways:
 
 # Running Streamlit
 
-Streamlit run with one command: `../mlops_course/streamlit/tone_app.py`
+Streamlit run with one command: `streamlit run ../mlops_course/streamlit/tone_app.py`
 
 
 # Example of work 
