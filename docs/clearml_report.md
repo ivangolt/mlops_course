@@ -18,7 +18,7 @@ for mamba: `mamba create -y -n clearml python=3.10.14 numpy pandas polars clearm
 then add credential in clearML server cope credentials and after in local machine start:
 `clearml-init` 
 and then add credentials to clearml.conf
-[!](docs/clearml_artifacts/clearml init.png)
+![](docs/clearml_artifacts/clearml init.png)
 
 2) using saas: use for this credentials from clerml from web and update or add new credentials in clearml.conf
 
@@ -69,7 +69,7 @@ task.upload_artifact(
     artifact_object=(test_features, test["toxic"].to_numpy()),
 )
 ```
-[!](docs/clearml_artifacts/artifacts.png)
+![](docs/clearml_artifacts/artifacts.png)
 
 5) logging metrics 
 
@@ -85,11 +85,12 @@ for class_name, metrics in report.items():
     for metric, value in metrics.items():
         logger.report_single_value(f"{class_name}_{metric}", value)
 ```
-[!](docs/clearml_artifacts/metrics.png)
+
+![](docs/clearml_artifacts/metrics.png)
 
 Also you can upload plots, for example confusion_matrix
 
-[!](docs/clearml_artifacts/plots.png)
+![](docs/clearml_artifacts/plots.png)
 
 6) After all code runs you need to stop task
 
@@ -97,15 +98,18 @@ Also you can upload plots, for example confusion_matrix
 
 ## Compare two experiments
 
-In this task was compare two variants of embeddings 1)tf-idf, 2)BERT, and then fitting on them model of Logistic Regression.
+In this task was compare two variants of embeddings 
+
+1)tf-idf, 
+2)BERT, and then fitting on them model of Logistic Regression.
 
 TF-IDf embeddings was fitted on local machine, and BERT model was fitted in Google Colab using ClearML Agent.
 
 In clearML server we have 2 completed runs with artifacts, metrics and plots.
-[!](docs/clearml_artifacts/completed work.png)
+![](docs/clearml_artifacts/completed work.png)
 
 Also we can compare logged metrics:
-[!](docs/clearml_artifacts/metrics.png)
+![](docs/clearml_artifacts/metrics.png)
 
 and plots:
-[!](docs/clearml_artifacts/plots.png)
+![](docs/clearml_artifacts/plots.png)
