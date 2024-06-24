@@ -21,16 +21,20 @@ Configure access to the web server from outside the cluster: `minikube ip`
 Verify the Deployment and Service:
 
 `kubectl get configmap`
-![](../docs/kubernetes images/kubectl get configmap.PNG)
+
+![](../docs/kubernetes_images/kubectl_get_configmap.PNG)
 
 `kubectl get deployments`
-![](../docs/kubernetes images/kubectl get deployments.PNG)
+
+![](../docs/kubernetes_images/kubectl_get_deployments.PNG)
 
 `kubectl get pods`
-![](../docs/kubernetes images/kubectl get pods.PNG)
+
+![](../docs/kubernetes_images/kubectl_get_pods.PNG)
 
 `kubectl get services`
-![](../docs/kubernetes images/kubectl get services.PNG)
+
+![](../docs/kubernetes_images/kubectl_get_services.PNG)
 
 
 Start Minikube Tunnel: `minikube tunnel`
@@ -41,11 +45,12 @@ Update the hosts file: To access the Nginx server using a domain name, update yo
 
 
 Open this URL in browser:
-![](../docs/kubernetes images/kubernetes html.PNG)
+
+![](../docs/kubernetes_images/kubernetes_html.png)
 
 
 Run minikube dashboard: `minikube dashboard`
 
-![](../docs/kubernetes images/minikube dashboard.PNG)
+![](../docs/kubernetes_images/minikube_dashboard.PNG)
 
 
