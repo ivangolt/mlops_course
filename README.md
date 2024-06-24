@@ -125,6 +125,9 @@ See the [report](docs/Snakemake_Hydra_pipelines.qmd) for details of the implemen
 ## Streamlit
 [Streamlit report](docs/streamlit.md)
 
+##  Kubernetes
+[Kubernetes report](docs/kubernetes.md)
+
 ## Contacts
 
 If you have any questions or suggestions regarding the development methodology in this repository, please contact us at:
