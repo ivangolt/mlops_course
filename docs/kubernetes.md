@@ -46,7 +46,7 @@ Update the hosts file: To access the Nginx server using a domain name, update yo
 
 Open this URL in browser:
 
-![](../docs/kubernetes_images/kubernetes_html.png)
+![](../docs/kubernetes_images/kubernetes_html.PNG)
 
 
 Run minikube dashboard: `minikube dashboard`
