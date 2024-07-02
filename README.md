@@ -129,7 +129,7 @@ See the [report](docs/Snakemake_Hydra_pipelines.qmd) for details of the implemen
 [Kubernetes report](docs/kubernetes.md)
 
 ## Feast
-[Feast report](docs\feast.md)
+[Feast report](docs\featureform.md)
 
 ## Contacts
 
