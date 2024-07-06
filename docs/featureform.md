@@ -2,7 +2,7 @@
 In this task we pull and start the Featureform container, as well as a Postgres and Redis containers containing some example data.
 For example data will use data of parsing posts from telegram_channels
 
-[Repository](https://gitlab.com/ivan_golt/featureform_repo) of feature store in Featureform.
+[Repository](https://gitlab.com/ivan_golt/featureform_repo) of feature store in Featureform.    
 
 # Install the Featureform CLI
 
