@@ -8,3 +8,6 @@ _site/
 /.snakemake/
 *.csv
 .hypothesis
+/data
+data/
+.vscode/

@@ -6,7 +6,6 @@ services:
       - apiserver
     container_name: clearml-apiserver
     image: allegroai/clearml:latest
-    restart: unless-stopped
     volumes:
       - logs:/var/log/clearml
       - config:/opt/clearml/config

@@ -64,4 +64,4 @@ After running experimnets model and metrics artifacts upload to s3 storage
 ![](../docs/mlflow_artifacts/mlflow_minio.png)
 
 
-Full code of task we can see in [mlflow.ipynb](../mlops_course/mlflow.ipynb)
+Full code of task we can see in: [mlflow.ipynb](../mlops_course/mlflow.ipynb)
